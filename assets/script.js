@@ -35,6 +35,43 @@ function render() {
 
 render();
 
+let currentHour = moment().get('hour');
+
+switch (currentHour) {
+    case 13:
+        currentHour = 1;
+        break;
+    case 14:
+        currentHour = 2;
+        break;
+    case 15:
+        currentHour = 3;
+        break;
+    case 16:
+        currentHour = 4;
+        break;
+    case 17:
+        currentHour = 5;
+    default:
+        break;
+}
+
+console.log(currentHour);
+
+function currentTime(){
+    
+
+
+    
+    
+
+    
+    
+
+}
+
+currentTime();
+
 $('button').on('click', function(){
     if ($(this).hasClass('saveBtn')){
       let textVal = $(this).parent('.row').find('#textarea');
