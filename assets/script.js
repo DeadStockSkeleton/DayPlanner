@@ -24,8 +24,8 @@ function render() {
        label.attr('id','time');
        row.append(label);
        textarea.attr('id', 'textarea');
-       textarea.attr('data-index', i);
-       textarea.attr('class', 'past');
+       let realNum = parseInt(workday[i]);
+       textarea.attr('data-index', realNum);
        row.append(textarea);
        row.append(button);
        $('.container').append(row);
@@ -36,6 +36,18 @@ function render() {
 render();
 
 let currentHour = moment().get('hour');
+let txtHour = $(textarea).attr('data-index');
+
+for (let i = 0; i < txtHour.length; i++){
+    if (currentHour === txtHour[i]) {
+        alert('dog');
+    
+    }
+    else{
+        alert(txtHour[i]);
+    }
+}
+
 
 switch (currentHour) {
     case 13:
@@ -58,19 +70,8 @@ switch (currentHour) {
 
 console.log(currentHour);
 
-function currentTime(){
-    
 
 
-    
-    
-
-    
-    
-
-}
-
-currentTime();
 
 $('button').on('click', function(){
     if ($(this).hasClass('saveBtn')){
