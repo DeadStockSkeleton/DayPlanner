@@ -3,9 +3,52 @@ var now = moment().format('dddd, MMMM Do');
 const CURRENTDAY = $('#currentDay')
 CURRENTDAY.text(now);
 
-let workday = ['9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM']
-let todoList = [];
-let index = [];
+let workday = [
+    {
+        time: '9AM',
+        todo: ''
+
+}, 
+    {
+        time: '10AM',
+        todo: ''
+},
+{
+    time: '11AM',
+    todo: ''
+
+}, 
+{
+    time: '12AM',
+    todo: ''
+}
+,
+{
+    time: '1AM',
+    todo: ''
+
+}, 
+{
+    time: '2AM',
+    todo: ''
+},
+{
+    time: '3AM',
+    todo: ''
+
+}, 
+{
+    time: '4AM',
+    todo: ''
+}
+,
+{
+    time: '5AM',
+    todo: ''
+
+}
+]
+
 
 
 function render() {
@@ -20,15 +63,16 @@ function render() {
        button.attr('id', 'save');
        button.append(icon);
        row.attr('class', 'row');
-       label.text(workday[i]);
+       label.text(workday[i].time);
+       let realNum = parseInt(workday[i].time);
        label.attr('id','time');
        row.append(label);
        textarea.attr('id', 'textarea');
-       let realNum = parseInt(workday[i]);
-       textarea.attr('data-index', realNum);
+       textarea.attr('value', realNum);
        row.append(textarea);
        row.append(button);
        $('.container').append(row);
+       
 
    }
 }
@@ -36,17 +80,26 @@ function render() {
 render();
 
 let currentHour = moment().get('hour');
-let txtHour = $(textarea).attr('data-index');
 
-for (let i = 0; i < txtHour.length; i++){
-    if (currentHour === txtHour[i]) {
-        alert('dog');
+
+$('button').on('click', function(){
+    if ($(this).hasClass('saveBtn')){
+      let textVal = $(this).parent('.row').find('#textarea');
+      let indexVal = textVal.attr('value');
+        if (textVal.val().trim().length === 0){
+            alert('invalid input');
+            textVal.val('');
+            return;
+        }
+        else{
+            workday.todo = textVal.val();
+            console.log(workday)
+        }
+        
+    }
     
-    }
-    else{
-        alert(txtHour[i]);
-    }
-}
+})
+
 
 
 switch (currentHour) {
@@ -74,23 +127,5 @@ console.log(currentHour);
 
 
 $('button').on('click', function(){
-    if ($(this).hasClass('saveBtn')){
-      let textVal = $(this).parent('.row').find('#textarea');
-      let indexVal = textVal.attr('data-index');
-        if (textVal.val().trim().length === 0){
-            alert('invalid input');
-            textVal.val('');
-            return;
-        }
-        else{
-            todoList.push(textVal.val());
-            index.push(indexVal);
-            console.log(todoList);
-            console.log(index);
-        }
-        
-    }
-    else{
-        return;
-    }
+    
 })
