@@ -67,10 +67,10 @@ function render() {
     row.append(textarea);
     row.append(button);
     $(".container").append(row);
-  }
-  console.log(workday);
+  }//////
+  
 
-  workday = JSON.parse(localStorage.getItem("todos"));
+  
 }
 
 render();
@@ -78,6 +78,7 @@ init();
 
 function init() {
   JSON.parse(localStorage.getItem("todos"));
+  workday = JSON.parse(localStorage.getItem("todos"));
   render();
 }
 
@@ -92,7 +93,7 @@ $("button").on("click", function () {
       (o) => o.time === indexId + "AM" || o.time === indexId + "PM"
     );
     obj.todo = textVal.val();
-    console.log(workday);
+    
 
     $("textarea").each(function () {
       x += this.value.length;
@@ -103,7 +104,7 @@ $("button").on("click", function () {
       location.reload();
     } else {
       localStorage.setItem("todos", JSON.stringify(workday));
-      console.log(workday);
+    
     }
   }
 });
@@ -249,4 +250,3 @@ switch (currentHour) {
     $("textarea").addClass("past");
 }
 
-console.log(currentHour);
